@@ -36,10 +36,14 @@
 
     <div class="col">
         {{-- technologies project  --}}
-        <div class="mb-3">
-            <input type="checkbox" class="form-check-input">
-            <label class="form-check-label">{{ $technologies->label }}</label>
-        </div>
+        @foreach ($technologies as $technology)
+            <div class="mb-3">
+                <input type="checkbox" class="form-check-input" id="{{ $technology->id }}" value="{{ $technology->id }}"
+                    name="technologies[]" @if (in_array($technology->id, old('technologies', []))) checked @endif>
+                <label class="form-check-label"
+                    for="technology-{{ $technology->label }}">{{ $technology->label }}</label>
+            </div>
+        @endforeach
     </div>
 </div>
 
@@ -56,7 +60,7 @@
 
 <div class="row row-cols-1">
     <div class="col">
-        {{-- created_at project --}}
+        {{-- image project --}}
         <div class="mb-3">
             <label for="image" class="form-label">image</label>
             <input type="file" id="image" name="image" class="form-control">

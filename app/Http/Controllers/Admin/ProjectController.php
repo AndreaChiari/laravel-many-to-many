@@ -29,7 +29,7 @@ class ProjectController extends Controller
     {
         $project = new Project();
         $types = Type::all();
-        $technologies = Technology::select('id', 'label')->get();
+        $technologies = Technology::select('id', 'label')->orderBy('id')->get();
         return view('admin.projects.create', compact('project', 'technologies', 'types'));
     }
 
@@ -48,7 +48,7 @@ class ProjectController extends Controller
 
         $project->fill($data);
         $project->save();
-
+        $project->technologies()->attach($data['technologies']);
         return to_route('admin.projects.show', $project->id);
     }
 
@@ -67,7 +67,7 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $types = Type::all();
-        $technologies = Technology::select('id', 'label')->get();
+        $technologies = Technology::select('id', 'label')->orderBy('id')->get();
         return view('admin.projects.edit', compact('project', 'technologies', 'types'));
     }
 
