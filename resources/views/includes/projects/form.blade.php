@@ -33,6 +33,14 @@
                 value="{{ old('linkedin', $project->linkedin) }}">
         </div>
     </div>
+
+    <div class="col">
+        {{-- technologies project  --}}
+        <div class="mb-3">
+            <input type="checkbox" class="form-check-input">
+            <label class="form-check-label">{{ $technologies->label }}</label>
+        </div>
+    </div>
 </div>
 
 <div class="row row-cols-1">
