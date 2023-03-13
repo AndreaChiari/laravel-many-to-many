@@ -24,7 +24,13 @@
                         <td>{{ $project->updated_at }}</td>
                         <td>{{ $project->created_at }}</td>
                         <td>{{ $project->type?->name }}</td>
-                        {{-- <td>{{ $project->type?->name }}</td> --}}
+                        <td>
+                            @forelse($project->technologies as $technology)
+                                <span
+                                    class="badge rounded-pill me-2 text-bg-{{ $technology->color }}">{{ $technology->label }}</span>
+                            @empty
+                            @endforelse
+                        </td>
                         <td class="d-flex">
                             <a href="{{ route('admin.projects.show', $project->id) }}" class="btn btn-small btn-primary"><i
                                     class="fa-sharp fa-solid fa-eye"></i>See details</a>
@@ -36,7 +42,8 @@
                             <a class="btn btn-success ms-3 button-create" href="{{ route('admin.projects.create') }}">Add
                                 new
                                 project</a>
-                            <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-warning ms-3">Edit</a>
+                            <a href="{{ route('admin.projects.edit', $project->id) }}"
+                                class="btn btn-warning ms-3">Edit</a>
                         </td>
                     </tr>
                 @endforeach

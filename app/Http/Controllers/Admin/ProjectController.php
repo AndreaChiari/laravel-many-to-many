@@ -85,6 +85,8 @@ class ProjectController extends Controller
         }
         $data['type_id'] = intval($data['type_id']);
         $project->update($data);
+
+        $project->technologies()->sync($data['technologies']);
         return to_route('admin.projects.show', $project->id);
     }
 
