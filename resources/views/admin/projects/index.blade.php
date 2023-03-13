@@ -13,7 +13,7 @@
                     <th scope="col">Update At</th>
                     <th scope="col">Create At</th>
                     <th scope="col">Type</th>
-                    <th scope="col">technology</th>
+                    <th scope="col">technologies</th>
                 </tr>
             </thead>
             <tbody>
