@@ -39,6 +39,23 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        $request->validate(
+            [
+                'name' => 'required|string|min:3|max:50',
+                'description' => 'required|string',
+                'linkedin' => 'required|string',
+                'github' => 'required|string',
+                'image' => 'nullable|image|mimes:jpeg,jpg,png',
+                'technologies' => 'nullable|exists:technologies,id'
+            ],
+            [
+                'name.required' => 'la voce name deve essere obbligatoria',
+                'name.unique' => "esiste gia un progetto dal nome $request->name.",
+                'image.image' => 'L\'immagine deve eddere fil di tipo immagine',
+                'technologies' => 'le tecnologie selezionate non sono valide'
+            ]
+        );
+
 
         $project = new Project();
         if (array_key_exists('image', $data)) {
